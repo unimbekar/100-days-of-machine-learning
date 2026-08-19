@@ -27,15 +27,15 @@ Related files:
 
 **Simple:** one feature.
 
-\[
+$$
 y = \beta_0 + \beta_1 x
-\]
+$$
 
 **Multiple:** many features.
 
-\[
+$$
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
-\]
+$$
 
 Same idea: fit a linear relationship. With two features you get a **plane**; with more features, a **hyperplane**.
 
@@ -54,9 +54,9 @@ In sklearn: `reg.intercept_` and `reg.coef_`.
 
 OLS picks coefficients that **minimize the sum of squared residuals**:
 
-\[
+$$
 \min_{\beta} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-\]
+$$
 
 “Least squares” = square each error, then sum. Squaring penalizes large errors more and gives a closed-form solution for linear models.
 
@@ -80,9 +80,9 @@ This is exactly what `MeraLR.predict()` and sklearn's `LinearRegression.predict(
 
 The intercept is not a feature in raw `X`, but the math is cleaner if we treat it like one:
 
-\[
+$$
 \tilde{X} = [1 \mid X], \quad \tilde{\beta} = [\beta_0, \beta_1, \ldots, \beta_p]^T
-\]
+$$
 
 Then `y = X̃ β̃` with no separate intercept term. The notebook splits `betas[0]` → `intercept_` and `betas[1:]` → `coef_`.
 
@@ -92,9 +92,9 @@ Then `y = X̃ β̃` with no separate intercept term. The notebook splits `betas[
 
 **Residual** = actual minus predicted:
 
-\[
+$$
 e_i = y_i - \hat{y}_i
-\]
+$$
 
 Small residuals → good fit on that point. OLS minimizes the **sum of squared** residuals, not the count of large errors (that's more like MAE).
 
@@ -106,9 +106,9 @@ Small residuals → good fit on that point. OLS minimizes the **sum of squared**
 
 Closed-form OLS solution:
 
-\[
+$$
 \hat{\beta} = (X^T X)^{-1} X^T y
-\]
+$$
 
 Used in `code-from-scratch.ipynb` inside `MeraLR.fit()`. Works when `X^T X` is invertible (full rank, no perfect multicollinearity).
 
@@ -127,9 +127,9 @@ Sklearn's `LinearRegression` often uses LAPACK (similar to normal equation) for 
 
 ### Q9. What is R² and how do you interpret it?
 
-\[
+$$
 R^2 = 1 - \frac{SS_{res}}{SS_{tot}} = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
-\]
+$$
 
 - **1.0** — perfect fit on that set  
 - **0.0** — no better than always predicting the mean  
@@ -230,9 +230,9 @@ R² **always increases** (or stays same) when you add features, even useless one
 
 **Adjusted R²** penalizes extra features:
 
-\[
+$$
 R^2_{adj} = 1 - (1 - R^2)\frac{n-1}{n-p-1}
-\]
+$$
 
 Use it to compare models with **different numbers of predictors** on the same dataset.
 
@@ -277,9 +277,9 @@ Interview answer: “Regression tells us correlation conditional on other variab
 
 Features like `x, x², x³` are still **linear in the parameters**:
 
-\[
+$$
 y = \beta_0 + \beta_1 x + \beta_2 x^2
-\]
+$$
 
 So it's **multiple linear** regression with engineered features, not a different model class. You can fit curves while still using OLS.
 
