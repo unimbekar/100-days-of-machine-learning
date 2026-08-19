@@ -2,6 +2,8 @@
 
 Video: https://youtu.be/ashGekqstl8
 
+**Interview Q&A:** [knowledge.md](./knowledge.md) — FAQ and basic/advanced questions on multiple linear regression.
+
 ## What is multiple linear regression?
 
 **Simple linear regression** uses one feature:
